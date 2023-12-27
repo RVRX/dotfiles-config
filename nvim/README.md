@@ -3,3 +3,4 @@
 1. Install [Plug](https://github.com/junegunn/vim-plug#neovim)
 2. mkdir `~/.config/nvim/` and place `init.vim` in it
 3. Run `:PlugInstall` in nvim
+4. Add nvim as default git editor: `git config --global core.editor nvim`
