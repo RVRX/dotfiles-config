@@ -1,5 +1,5 @@
 # NVIM
-0. Install NeoVim
+0. Install a *recent* neovim version. Check Nevim's [GitHub releases](https://github.com/neovim/neovim/releases/). Try the AppImage dl, move to `/usr/local/bin/` after a `chmod u+x`
 1. Install [Plug](https://github.com/junegunn/vim-plug#neovim)
 2. mkdir `~/.config/nvim/` and place `init.vim` in it
 ```
