@@ -5,7 +5,7 @@ call plug#begin('~/.local/share/nvim/site/plugged')
 Plug 'vim-airline/vim-airline'
 
 " NERDTree, file system explorer
- Plug 'preservim/nerdtree'
+Plug 'preservim/nerdtree'
 
 " Icons (for NERDTree) [TODO: requires a NERD Font on terminal]
 "Plug 'ryanoasis/vim-devicons'
