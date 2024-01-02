@@ -106,3 +106,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias vi=nvim
 alias vim=nvim
+
+
+# Uncomment the following line to run neofetch on shell start
+# neofetch
