@@ -3,7 +3,7 @@
 
 move_config() {
     echo "moving $2 to $1"
-    #mv $2 $1
+    cp $2 $1
 }
 
 ## checks for an existing config at a location before replacing
