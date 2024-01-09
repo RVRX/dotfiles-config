@@ -46,6 +46,7 @@ require('nvim-tree').setup({
     -- custom mappings
     bufmap('e', api.tree.change_root_to_node, 'CD')
     bufmap('I', api.tree.toggle_hidden_filter, 'Toggle hidden files')
+    vim.keymap.del('n', '<C-T>', { buffer = bufnr })
   end
 })
 
