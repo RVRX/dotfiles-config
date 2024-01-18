@@ -17,6 +17,7 @@ Plug 'nvim-tree/nvim-web-devicons' " TODO: requires a NERD Font on terminal
 Plug 'romgrk/barbar.nvim'
 
 " theme
+Plug 'catppuccin/nvim', {'as': 'catppuccin'}
 Plug 'dracula/vim', { 'as': 'dracula' }
 
 " List ends here. Plugins become visible to Vim after this call.
@@ -76,7 +77,15 @@ vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 
 EOF
 
-colorscheme dracula         " enable theme
+"colorscheme dracula         " enable theme
+
+let g:catppuccin_flavour = "macchiato" " latte, frappe, macchiato, mocha
+
+lua << EOF
+require("catppuccin").setup()
+EOF
+
+colorscheme catppuccin
 "set termguicolors           " can fix issue with theme colors
 
 set mouse=a                 " enable mouse
@@ -97,3 +106,31 @@ syntax on                   " syntax highlighting (nvim default)
 set cursorline              " enable cursorline
 set ttyfast                 " speed scrolling
 set hidden                  " needed for toggleterm to function properly
+
+
+" BarBar keybinds
+" Move to previous/next
+nnoremap <silent>    <A-,> <Cmd>BufferPrevious<CR>
+nnoremap <silent>    <A-.> <Cmd>BufferNext<CR>
+
+" Re-order to previous/next
+nnoremap <silent>    <A-<> <Cmd>BufferMovePrevious<CR>
+nnoremap <silent>    <A->> <Cmd>BufferMoveNext<CR>
+
+" Goto buffer in position...
+nnoremap <silent>    <A-1> <Cmd>BufferGoto 1<CR>
+nnoremap <silent>    <A-2> <Cmd>BufferGoto 2<CR>
+nnoremap <silent>    <A-3> <Cmd>BufferGoto 3<CR>
+nnoremap <silent>    <A-4> <Cmd>BufferGoto 4<CR>
+nnoremap <silent>    <A-5> <Cmd>BufferGoto 5<CR>
+nnoremap <silent>    <A-6> <Cmd>BufferGoto 6<CR>
+nnoremap <silent>    <A-7> <Cmd>BufferGoto 7<CR>
+nnoremap <silent>    <A-8> <Cmd>BufferGoto 8<CR>
+nnoremap <silent>    <A-9> <Cmd>BufferGoto 9<CR>
+nnoremap <silent>    <A-0> <Cmd>BufferLast<CR>
+
+" Pin/unpin buffer
+nnoremap <silent>    <A-p> <Cmd>BufferPin<CR>
+
+" Close buffer
+nnoremap <silent>    <A-c> <Cmd>BufferClose<CR>
