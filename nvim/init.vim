@@ -10,6 +10,12 @@ Plug 'akinsho/toggleterm.nvim', {'tag' : 'v2.9.0'}
 " NvimTree, file system explorer
 Plug 'nvim-tree/nvim-tree.lua'
 
+" diffview
+Plug 'sindrets/diffview.nvim'
+
+" Git status in gutter
+Plug 'airblade/vim-gitgutter'
+
 " Icons (for some plugins)
 Plug 'nvim-tree/nvim-web-devicons' " TODO: requires a NERD Font on terminal 
 
@@ -26,6 +32,11 @@ call plug#end()
 " init toggle term, define open key
 lua require("toggleterm").setup({open_mapping = [[<c-\>]]})
 
+
+" gitgutter options
+set updatetime=100
+autocmd VimEnter * GitGutterLineNrHighlightsEnable
+autocmd VimEnter * GitGutterLineHighlightsEnable
 
 lua << EOF
 
@@ -134,3 +145,8 @@ nnoremap <silent>    <A-p> <Cmd>BufferPin<CR>
 
 " Close buffer
 nnoremap <silent>    <A-c> <Cmd>BufferClose<CR>
+
+
+" macos only?
+"vnoremap <C-c> :w !pbcopy<CR><CR> noremap <C-v> :r !pbpaste<CR><CR>
+"set clipboard=unnamed
