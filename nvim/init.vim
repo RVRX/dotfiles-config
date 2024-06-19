@@ -180,6 +180,10 @@ require('nvim-tree').setup({
 -- open NvimTree with \e
 vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeToggle<cr>')
 
+-- DiffView keymaps
+vim.keymap.set('n', '<leader>dv', '<cmd>DiffviewFileHistory %<cr>')
+vim.keymap.set('n', '<leader>do', '<cmd>DiffviewOpen<cr>')
+vim.keymap.set('n', '<leader>dc', '<cmd>DiffviewClose<cr>')
 
 -- marks setup
 require'marks'.setup {
