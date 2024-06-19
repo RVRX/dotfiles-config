@@ -57,6 +57,9 @@ Plug 'MunifTanjim/nui.nvim'
 " hardtime, command suggestions to better vim workflow
 Plug 'm4xshen/hardtime.nvim'
 
+" notifications
+Plug 'rcarriga/nvim-notify'
+
 " theme
 Plug 'catppuccin/nvim', {'as': 'catppuccin'}
 Plug 'dracula/vim', { 'as': 'dracula' }
@@ -154,6 +157,7 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 
+vim.notify = require("notify")
 
 -- telescope settings
 local builtin = require('telescope.builtin')
@@ -193,6 +197,7 @@ vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeToggle<cr>')
 vim.keymap.set('n', '<leader>dv', '<cmd>DiffviewFileHistory %<cr>')
 vim.keymap.set('n', '<leader>do', '<cmd>DiffviewOpen<cr>')
 vim.keymap.set('n', '<leader>dc', '<cmd>DiffviewClose<cr>')
+
 
 -- marks setup
 require'marks'.setup {
