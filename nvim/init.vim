@@ -51,6 +51,12 @@ Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.6' }
 " lazygit
 Plug 'kdheepak/lazygit.nvim'
 
+" UI compnents (hardtime dependency)
+Plug 'MunifTanjim/nui.nvim'
+
+" hardtime, command suggestions to better vim workflow
+Plug 'm4xshen/hardtime.nvim'
+
 " theme
 Plug 'catppuccin/nvim', {'as': 'catppuccin'}
 Plug 'dracula/vim', { 'as': 'dracula' }
@@ -226,6 +232,14 @@ require'marks'.setup {
   mappings = {}
 }
 
+-- hardtime setup
+-- https://github.com/m4xshen/hardtime.nvim
+require("hardtime").setup({
+   disable_mouse=false,
+   max_time=500,
+   max_count=2,
+   restriction_mode="hint"
+})
 
 ---- toggle term keybinds
 --function _G.set_terminal_keymaps()
