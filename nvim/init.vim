@@ -36,6 +36,9 @@ Plug 'lewis6991/gitsigns.nvim' " OPTIONAL: for git status
 " marks
 Plug 'chentoast/marks.nvim'
 
+" linter/make[r]
+Plug 'neomake/neomake'
+
 " git-messenger (git blame; <leader>hgm)
 Plug 'rhysd/git-messenger.vim'
 
@@ -264,7 +267,7 @@ set expandtab               " convert tabs to whitespace
 set shiftwidth=4            " width for autoindent
 set autoindent              " enable autoindent
 set number                  " line numbers
-set wildmode=longest,list   " tab-completion settings
+set wildmode=longest,full   " tab-completion settings
 filetype plugin indent on   " allow auto-indenting depending on file type
 syntax on                   " syntax highlighting (nvim default)
 set cursorline              " enable cursorline
