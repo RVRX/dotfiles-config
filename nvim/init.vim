@@ -45,6 +45,9 @@ Plug 'nvim-lua/plenary.nvim'
 " telescope (file search, fuzzy file finder)
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.6' }
 
+" lazygit
+Plug 'kdheepak/lazygit.nvim'
+
 " theme
 Plug 'catppuccin/nvim', {'as': 'catppuccin'}
 Plug 'dracula/vim', { 'as': 'dracula' }
