@@ -60,6 +60,9 @@ Plug 'm4xshen/hardtime.nvim'
 " notifications
 Plug 'rcarriga/nvim-notify'
 
+" indent '|' lines for better visualization of indents
+Plug 'lukas-reineke/indent-blankline.nvim'
+
 " theme
 Plug 'catppuccin/nvim', {'as': 'catppuccin'}
 Plug 'dracula/vim', { 'as': 'dracula' }
@@ -158,6 +161,9 @@ require'nvim-treesitter.configs'.setup {
 }
 
 vim.notify = require("notify")
+
+-- indent blankline
+require("ibl").setup()
 
 -- telescope settings
 local builtin = require('telescope.builtin')
