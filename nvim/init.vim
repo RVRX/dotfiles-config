@@ -273,6 +273,7 @@ syntax on                   " syntax highlighting (nvim default)
 set cursorline              " enable cursorline
 set ttyfast                 " speed scrolling
 set hidden                  " needed for toggleterm to function properly
+set relativenumber
 
 
 " BarBar keybinds
