@@ -96,7 +96,7 @@ require'dashboard'.setup{
        enable = true,
       },
       shortcut = {
-        { desc = '󰊳 Update', group = '@property', action = 'Lazy update', key = 'u' },
+        -- { desc = '󰊳 Update', group = '@property', action = 'Lazy update', key = 'u' },
         {
           icon = ' ',
           icon_hl = '@variable',
@@ -106,15 +106,16 @@ require'dashboard'.setup{
           key = 'f',
         },
         {
-          desc = ' Apps',
+          desc = 'Check Health',
           group = 'DiagnosticHint',
-          action = 'Telescope app',
+          action = 'checkhealth',
           key = 'a',
         },
         {
           desc = ' dotfiles',
           group = 'Number',
-          action = 'Telescope dotfiles',
+          --action = 'Telescope dotfiles',
+          action = 'tabe ~/.config/',
           key = 'd',
         },
       },
