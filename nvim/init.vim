@@ -2,7 +2,7 @@
 call plug#begin('~/.local/share/nvim/site/plugged')
 
 " Bottom bar guy
-Plug 'vim-airline/vim-airline'
+Plug 'nvim-lualine/lualine.nvim'
 
 " Startup splash screen
 Plug 'nvimdev/dashboard-nvim'
@@ -168,6 +168,10 @@ vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 
 -- set termguicolors to enable highlight groups
 --vim.opt.termguicolors = true
+
+-- lualine (status line plugin)
+require('lualine').setup()
+
 
 -- empty setup using defaults
 require('nvim-tree').setup({
