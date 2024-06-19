@@ -63,7 +63,6 @@ Plug 'rcarriga/nvim-notify'
 " indent '|' lines for better visualization of indents
 Plug 'lukas-reineke/indent-blankline.nvim'
 
-
 " total redesign of the command line
 Plug 'folke/noice.nvim'
 
@@ -167,7 +166,27 @@ require'nvim-treesitter.configs'.setup {
 vim.notify = require("notify")
 
 -- indent blankline
-require("ibl").setup()
+require("ibl").setup({
+    indent = {
+    char = "│",
+    tab_char = "│",
+  },
+  scope = { show_start = false, show_end = false },
+  exclude = {
+    filetypes = {
+      "help",
+      "alpha",
+      "dashboard",
+      "neo-tree",
+      "Trouble",
+      "trouble",
+      "lazy",
+      "mason",
+      "notify",
+      "toggleterm",
+      "lazyterm",
+    },
+  },})
 
 require("noice").setup({
   lsp = {
