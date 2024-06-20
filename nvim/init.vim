@@ -66,6 +66,9 @@ Plug 'lukas-reineke/indent-blankline.nvim'
 " total redesign of the command line
 Plug 'folke/noice.nvim'
 
+" sublime-text-esque multiple cursor selections
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+
 " theme
 Plug 'catppuccin/nvim', {'as': 'catppuccin'}
 Plug 'dracula/vim', { 'as': 'dracula' }
