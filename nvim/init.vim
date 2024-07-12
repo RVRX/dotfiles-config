@@ -84,6 +84,9 @@ Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'L3MON4D3/LuaSnip'
 Plug 'VonHeikemen/lsp-zero.nvim', {'branch': 'v3.x'}
 
+" statuscol (used to make improvements to nvim ufo
+Plug 'luukvbaal/statuscol.nvim'
+
 " promise (line folding, nvim-ufo requirement)
 Plug 'kevinhwang91/promise-async'
 " line folding
@@ -209,6 +212,19 @@ require('mason-lspconfig').setup({
     end,
   },
 })
+
+-- removes folding numbers
+local builtin = require("statuscol.builtin")
+require("statuscol").setup(
+  {
+    relculright = true,
+    segments = {
+      {text = {builtin.foldfunc}, click = "v:lua.ScFa"},
+      {text = {"%s"}, click = "v:lua.ScSa"},
+      {text = {builtin.lnumfunc, " "}, click = "v:lua.ScLa"}
+    }
+  }
+)
 
 --require("mason").setup()
 --require("mason-lspconfig").setup()
