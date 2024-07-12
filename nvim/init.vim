@@ -84,6 +84,11 @@ Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'L3MON4D3/LuaSnip'
 Plug 'VonHeikemen/lsp-zero.nvim', {'branch': 'v3.x'}
 
+" promise (line folding, nvim-ufo requirement)
+Plug 'kevinhwang91/promise-async'
+" line folding
+Plug 'kevinhwang91/nvim-ufo'
+
 " theme
 Plug 'catppuccin/nvim', {'as': 'catppuccin'}
 Plug 'dracula/vim', { 'as': 'dracula' }
@@ -257,6 +262,43 @@ vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+
+
+
+
+
+-- the below was sourced from https://lsp-zero.netlify.app/v3.x/guide/quick-recipes.html#enable-folds-with-nvim-ufo
+-- vim ufo folding
+vim.o.foldcolumn = '1'
+vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
+
+require('ufo').setup()
+
+-- Using ufo provider need remap `zR` and `zM`.
+vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
+vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
+
+local lsp_zero = require('lsp-zero')
+
+lsp_zero.on_attach(function(client, bufnr)
+  lsp_zero.default_keymaps({buffer = bufnr})
+end)
+
+lsp_zero.set_server_config({
+  capabilities = {
+    textDocument = {
+      foldingRange = {
+        dynamicRegistration = false,
+        lineFoldingOnly = true
+      }
+    }
+  }
+})
+
+
+
 
 -- set termguicolors to enable highlight groups
 --vim.opt.termguicolors = true
