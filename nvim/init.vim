@@ -69,6 +69,21 @@ Plug 'folke/noice.nvim'
 " sublime-text-esque multiple cursor selections
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
+" lsp package manager and co.
+"Plug 'williamboman/mason.nvim' " package manager
+"Plug 'williamboman/mason-lspconfig.nvim' " helper for thing
+"Plug 'neovim/nvim-lspconfig' " thing
+
+
+"  Uncomment the two plugins below if you want to manage the language servers from neovim
+Plug 'williamboman/mason.nvim'
+Plug 'williamboman/mason-lspconfig.nvim'
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'L3MON4D3/LuaSnip'
+Plug 'VonHeikemen/lsp-zero.nvim', {'branch': 'v3.x'}
+
 " theme
 Plug 'catppuccin/nvim', {'as': 'catppuccin'}
 Plug 'dracula/vim', { 'as': 'dracula' }
@@ -168,6 +183,30 @@ require'nvim-treesitter.configs'.setup {
 }
 
 vim.notify = require("notify")
+
+
+local lsp_zero = require('lsp-zero')
+
+lsp_zero.on_attach(function(client, bufnr)
+  -- see :help lsp-zero-keybindings
+  -- to learn the available actions
+  lsp_zero.default_keymaps({buffer = bufnr})
+end)
+
+-- to learn how to use mason.nvim
+-- read this: https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/guide/integrate-with-mason-nvim.md
+require('mason').setup({})
+require('mason-lspconfig').setup({
+  ensure_installed = {},
+  handlers = {
+    function(server_name)
+      require('lspconfig')[server_name].setup({})
+    end,
+  },
+})
+
+--require("mason").setup()
+--require("mason-lspconfig").setup()
 
 -- indent blankline
 require("ibl").setup({
