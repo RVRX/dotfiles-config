@@ -421,6 +421,8 @@ nnoremap <silent>    <A-p> <Cmd>BufferPin<CR>
 " Close buffer
 nnoremap <silent>    <A-c> <Cmd>BufferClose<CR>
 
+" setup mapping to call :LazyGit
+nnoremap <silent> <leader>gg :LazyGit<CR>
 
 " macos only?
 vnoremap <C-c> :w !pbcopy<CR><CR> noremap <C-v> :r !pbpaste<CR><CR>
