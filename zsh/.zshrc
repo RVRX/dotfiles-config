@@ -1,5 +1,7 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+zstyle ':omz:alpha:lib:git' async-prompt no
+# ^ fix for dissapearing git prompt https://github.com/ohmyzsh/ohmyzsh/issues/12267
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
