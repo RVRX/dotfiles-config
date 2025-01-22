@@ -113,6 +113,7 @@ source $ZSH/oh-my-zsh.sh
 alias vi=nvim
 alias vim=nvim
 
+alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 
 # Uncomment the following line to run neofetch on shell start
 # neofetch
