@@ -77,6 +77,10 @@ plugins=(
 	zsh-syntax-highlighting
 	zsh-autosuggestions
 	zsh-nvm
+    colored-man-pages
+    dirhistory  # alt-arrowkey navigation of dirs
+    macos
+    rsync  # adds `rysnc-*` command aliases
 )
 
 source $ZSH/oh-my-zsh.sh
