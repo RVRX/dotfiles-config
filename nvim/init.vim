@@ -35,6 +35,7 @@ Plug 'lewis6991/gitsigns.nvim' " OPTIONAL: for git status
 
 " Bookmarks
 Plug 'MattesGroeger/vim-bookmarks'
+" `mm` to toggle bookmarks
 
 " linter/make[r]
 Plug 'neomake/neomake'
@@ -51,7 +52,7 @@ Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.6' }
 " lazygit
 Plug 'kdheepak/lazygit.nvim'
 
-" UI compnents (hardtime, noice dependency)
+" UI components (hardtime, noice dependency)
 Plug 'MunifTanjim/nui.nvim'
 
 " hardtime, command suggestions to better vim workflow
@@ -190,7 +191,10 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 
-vim.notify = require("notify")
+vim.notify = require("notify").setup({
+   render = "minimal", 
+   top_down = false,
+})
 
 
 local lsp_zero = require('lsp-zero')
@@ -314,13 +318,23 @@ lsp_zero.set_server_config({
 })
 
 
+vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 
 
 -- set termguicolors to enable highlight groups
 --vim.opt.termguicolors = true
 
 -- lualine (status line plugin)
-require('lualine').setup()
+require('lualine').setup {
+    sections = {
+        lualine_c = {
+            {
+            'filename',
+            path = 1,
+            }
+        }
+    }
+}
 
 
 -- empty setup using defaults
@@ -357,7 +371,7 @@ vim.keymap.set('n', '<leader>dc', '<cmd>DiffviewClose<cr>')
 require("hardtime").setup({
    disable_mouse=false,
    max_time=500,
-   max_count=2,
+   max_count=5,
    restriction_mode="hint"
 })
 
@@ -380,13 +394,13 @@ EOF
 
 "colorscheme dracula         " enable theme
 
-let g:catppuccin_flavour = "macchiato" " latte, frappe, macchiato, mocha
+let g:catppuccin_flavour = "mocha" " latte, frappe, macchiato, mocha
 
 lua << EOF
 require("catppuccin").setup()
 EOF
 
-colorscheme catppuccin
+colorscheme catppuccin-mocha
 "set termguicolors           " can fix issue with theme colors
 
 set mouse=a                 " enable mouse
@@ -430,6 +444,7 @@ nnoremap <silent>    <A-7> <Cmd>BufferGoto 7<CR>
 nnoremap <silent>    <A-8> <Cmd>BufferGoto 8<CR>
 nnoremap <silent>    <A-9> <Cmd>BufferGoto 9<CR>
 nnoremap <silent>    <A-0> <Cmd>BufferLast<CR>
+nnoremap <silent>    <C-p> <Cmd>BufferPick<CR>
 
 " Pin/unpin buffer
 nnoremap <silent>    <A-p> <Cmd>BufferPin<CR>
