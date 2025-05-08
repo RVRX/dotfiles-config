@@ -78,7 +78,7 @@ plugins=(
 	zsh-autosuggestions
 	zsh-nvm
     colored-man-pages
-    dirhistory  # alt-arrowkey navigation of dirs
+    # dirhistory  # alt-arrowkey navigation of dirs
     macos
     rsync  # adds `rysnc-*` command aliases
 )
@@ -115,7 +115,10 @@ source $ZSH/oh-my-zsh.sh
 alias vi=nvim
 alias vim=nvim
 
-alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
+#alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 
 # Uncomment the following line to run neofetch on shell start
 # neofetch
+
+# Uncomment the following line to enable 1Password completions
+# eval "$(op completion zsh)"; compdef _op op
