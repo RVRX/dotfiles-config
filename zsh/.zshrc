@@ -120,5 +120,13 @@ alias vim=nvim
 # Uncomment the following line to run neofetch on shell start
 # neofetch
 
+# linux manpages
+# See:
+#   https://apple.stackexchange.com/a/427413/519342
+#   linux$ tar -cvf manpages.tar /usr/share/man
+#   mac$ scp
+lman() { man -M ~/Documents/linux-man "$@" }
+
+
 # Uncomment the following line to enable 1Password completions
 # eval "$(op completion zsh)"; compdef _op op
