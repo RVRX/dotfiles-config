@@ -130,3 +130,23 @@ lman() { man -M ~/Documents/linux-man "$@" }
 
 # Uncomment the following line to enable 1Password completions
 # eval "$(op completion zsh)"; compdef _op op
+
+# Vi mode
+bindkey -v
+export KEYTIMEOUT=1
+bindkey '^R' history-incremental-search-backward
+
+# Blinking beam for insert, blinking block for normal mode
+function zle-keymap-select {
+  if [[ $KEYMAP == vicmd ]]; then
+    echo -ne '\e[1 q'  # blinking block
+  else
+    echo -ne '\e[5 q'  # blinking beam
+  fi
+}
+zle -N zle-keymap-select
+
+function zle-line-init {
+  echo -ne '\e[5 q'  # reset to insert mode cursor on new line
+}
+zle -N zle-line-init
