@@ -269,6 +269,13 @@ vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<cr>")
 -- [[ LAZYGIT ]]
 vim.keymap.set("n", "<leader>gg", ":LazyGit<CR>", { desc = "Open LazyGit" })
 
+vim.api.nvim_create_autocmd("TermEnter", {
+  callback = function() vim.o.hlsearch = false end,
+})
+vim.api.nvim_create_autocmd("TermLeave", {
+  callback = function() vim.o.hlsearch = true end,
+})
+
 -- Use neovim-remote so that pressing "e" in lazygit opens files in this nvim instance
 if vim.fn.executable('nvr') == 1 then
   vim.env.GIT_EDITOR = "nvr -cc split --remote-wait +'set bufhidden=wipe'"
