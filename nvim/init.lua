@@ -65,6 +65,9 @@ require("lazy").setup({
 })
 
 -- [[ OPTIONS ]]
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_python3_provider = 0
 vim.opt.mouse = "a"
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
@@ -128,8 +131,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("gI",         vim.lsp.buf.implementation)
     map("<leader>r",  vim.lsp.buf.rename)
     map("<leader>a",  vim.lsp.buf.code_action)
-    map("[d",         function() vim.diagnostic.jump({ count = -1, float = true }) end)
-    map("]d",         function() vim.diagnostic.jump({ count =  1, float = true }) end)
+    map("[d",         function() vim.diagnostic.jump({ count = -1, on_jump = function() vim.diagnostic.open_float() end }) end)
+    map("]d",         function() vim.diagnostic.jump({ count =  1, on_jump = function() vim.diagnostic.open_float() end }) end)
   end,
 })
 
