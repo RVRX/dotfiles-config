@@ -13,7 +13,8 @@ A personal dotfiles repository: a flat set of per-tool directories, each holding
 | Repo path | Destination |
 |-----------|-------------|
 | `nvim/init.lua` | `~/.config/nvim/init.lua` |
-| `nvim/spell/en.utf-8.add` | `~/.config/nvim/spell/en.utf-8.add` |
+| `nvim/lazy-lock.json` | `~/.config/nvim/lazy-lock.json` (**symlink**) |
+| `nvim/spell/en.utf-8.add` | `~/.config/nvim/spell/en.utf-8.add` (**symlink**) |
 | `zsh/.zshrc` | `~/.zshrc` |
 | `tmux/.tmux.conf` | `~/.tmux.conf` |
 | `lazygit/config.yml` | `~/.config/lazygit/config.yml` (macOS: `~/Library/Application Support/lazygit/config.yml`) |
@@ -29,11 +30,24 @@ Nothing here is symlinked into place. The live config and the repo copy drift in
 
 So when syncing a live config back into the repo, diff rather than overwrite, and keep the local-only and TODO-commented lines out of the commit.
 
+### The two exceptions: files nvim writes
+
+`nvim/lazy-lock.json` and `nvim/spell/en.utf-8.add` are **symlinked** into `~/.config/nvim/`, not copied, because nvim writes to both (`:Lazy update` and `zg` respectively). Symlinked, those writes land in the working tree and show up in `git status`; copied, they drift silently — which is how the spellfile went untracked for two years.
+
+nvim uses `~/.config/nvim` on macOS as well as Linux, so the same symlink commands work on every machine:
+
+```sh
+ln -sf ~/dotfiles-config/nvim/lazy-lock.json ~/.config/nvim/lazy-lock.json
+mkdir -p ~/.config/nvim/spell
+ln -sf ~/dotfiles-config/nvim/spell/en.utf-8.add ~/.config/nvim/spell/en.utf-8.add
+```
+
 ## nvim config architecture
 
 `nvim/init.lua` is a single-file config (~320 lines) organized into `-- [[ SECTION ]]` blocks: plugin bootstrap → options → colorscheme → then one block per plugin. Plugin *specs* are all declared in the one `require("lazy").setup({...})` table near the top; each plugin's *setup and keymaps* live in its own section further down, not inline in the spec. Follow that split when adding a plugin.
 
-- **lazy.nvim self-bootstraps** — it git-clones itself on first launch if absent; there is no separate install step and no lockfile committed.
+- **lazy.nvim self-bootstraps** — it git-clones itself on first launch if absent; there is no separate install step.
+- **`:Lazy restore` after every pull, before any install or update.** `lazy-lock.json` is committed and shared across machines, and lazy.nvim rewrites the whole file from *currently-installed* state on any install/update/sync. So on a machine that has pulled new pins but not restored them, installing one plugin silently rolls every other pin back to that machine's older commits. Restoring first makes the next write additive instead of regressive. The lockfile is portable — every entry is just `{branch, commit}`, with nothing platform-specific; native artifacts (LuaSnip's jsregexp, treesitter parsers, Mason's server binaries) are built per machine under `stdpath("data")` and are correctly not tracked.
 - **Leader is `\`** (`vim.g.mapleader = "\\"`).
 - **Requires nvim 0.11+** and uses the modern APIs deliberately (a past commit, `46770a2`, fixed `checkhealth` deprecations). Don't reintroduce older equivalents: use `vim.uv` (not `vim.loop`), `vim.lsp.config('*', …)` + mason-lspconfig v2's automatic enable (not per-server `lspconfig.<server>.setup{}`), and `vim.diagnostic.jump({count=…})` (not `goto_next`/`goto_prev`).
 - **Treesitter is on the `main` branch**, where the plugin only installs parsers; highlighting comes from neovim's built-in treesitter. Parsers need the `tree-sitter` CLI and a C compiler, and are installed with `:TSInstall`. A `BufReadPost` autocmd calls `vim.treesitter.stop()` for files over 250 KB.
