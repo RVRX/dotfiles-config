@@ -42,7 +42,8 @@ require("lazy").setup({
   -- LSP & Completion
   { "neovim/nvim-lspconfig", lazy = false },
   { "williamboman/mason.nvim" },
-  { "williamboman/mason-lspconfig.nvim" },
+  -- pinned to v2.x: the LSP setup below uses v2's automatic_enable, not v1's per-server setup{}
+  { "williamboman/mason-lspconfig.nvim", version = "^2" },
   { "hrsh7th/nvim-cmp" },
   { "hrsh7th/cmp-nvim-lsp" },
   { "L3MON4D3/LuaSnip", build = "make install_jsregexp" },
