@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 A personal dotfiles repository: a flat set of per-tool directories, each holding one config file plus a `README.md` with that tool's install steps and prerequisites. There is no build, test, or lint step — "running" a change means copying the file to its destination and restarting the tool.
 
-`install.sh` existed at HEAD but is deleted in the working tree (it only ever handled nvim, and assumed the old vim-plug `init.vim`). Treat installation as manual, per the per-directory READMEs. The top-level `README.md` still references `install.sh` and is stale.
+There is no installer. An `install.sh` existed until it was orphaned by the vim-plug → lazy.nvim migration (`292b7cf`) and removed; don't resurrect it without rewriting it, since it copied `nvim/init.vim`, prompted for `:PlugInstall`, gated on nvim 0.7, and would clobber the symlinks described below. Installation is manual, per the per-directory READMEs.
 
 ## Config file destinations
 
