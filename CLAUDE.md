@@ -13,6 +13,7 @@ A personal dotfiles repository: a flat set of per-tool directories, each holding
 | Repo path | Destination |
 |-----------|-------------|
 | `nvim/init.lua` | `~/.config/nvim/init.lua` |
+| `nvim/spell/en.utf-8.add` | `~/.config/nvim/spell/en.utf-8.add` |
 | `zsh/.zshrc` | `~/.zshrc` |
 | `tmux/.tmux.conf` | `~/.tmux.conf` |
 | `lazygit/config.yml` | `~/.config/lazygit/config.yml` (macOS: `~/Library/Application Support/lazygit/config.yml`) |
@@ -38,6 +39,8 @@ So when syncing a live config back into the repo, diff rather than overwrite, an
 - **Treesitter is on the `main` branch**, where the plugin only installs parsers; highlighting comes from neovim's built-in treesitter. Parsers need the `tree-sitter` CLI and a C compiler, and are installed with `:TSInstall`. A `BufReadPost` autocmd calls `vim.treesitter.stop()` for files over 250 KB.
 - **LSP keymaps are buffer-local**, set from a single `LspAttach` autocmd — add new ones there, not globally.
 - **lazygit integration**: `\gg` opens it; `GIT_EDITOR` is set to `nvr` when available so `e` in lazygit opens the file in the parent nvim. A `TermEnter`/`TermLeave` autocmd pair toggles `hlsearch` off inside terminal buffers so lazygit's UI isn't highlighted.
+
+The custom spellfile (`nvim/spell/en.utf-8.add`) is the hand-added word list. Its compiled `.spl` sibling is generated, so it is not tracked — run `:mkspell! ~/.config/nvim/spell/en.utf-8.add` after copying, or just let `zg` rebuild it. Note `init.lua` never sets `spell`; it is enabled per-buffer with `:set spell`.
 
 External binaries the config expects: `ripgrep` (Telescope live grep), `fd` (file finder), `tree-sitter` CLI, a C compiler, and optionally `lazygit` and `nvr`. See `nvim/README.md` for the full list and the keymap table.
 
