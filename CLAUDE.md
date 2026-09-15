@@ -14,7 +14,6 @@ A personal dotfiles repository: a flat set of per-tool directories, each holding
 |-----------|-------------|
 | `nvim/init.lua` | `~/.config/nvim/init.lua` |
 | `zsh/.zshrc` | `~/.zshrc` |
-| `fish/config.fish` | `~/.config/fish/config.fish` |
 | `tmux/.tmux.conf` | `~/.tmux.conf` |
 | `lazygit/config.yml` | `~/.config/lazygit/config.yml` (macOS: `~/Library/Application Support/lazygit/config.yml`) |
 | `iTerm2/com.googlecode.iterm2.plist` | imported through iTerm2 preferences, not copied |
@@ -42,11 +41,9 @@ So when syncing a live config back into the repo, diff rather than overwrite, an
 
 External binaries the config expects: `ripgrep` (Telescope live grep), `fd` (file finder), `tree-sitter` CLI, a C compiler, and optionally `lazygit` and `nvr`. See `nvim/README.md` for the full list and the keymap table.
 
-## Shell configs
+## zsh config
 
 `zsh/.zshrc` is oh-my-zsh–based. The custom plugins it lists (`zsh-syntax-highlighting`, `zsh-autosuggestions`, `zsh-nvm`) are **not vendored** and must be git-cloned into `$ZSH_CUSTOM/plugins/` first — a fresh copy of this file errors without them. See `zsh/README.md` for the clone commands. The `zstyle ':omz:alpha:lib:git' async-prompt no` line at the top is a workaround for an upstream oh-my-zsh bug (ohmyzsh#12267); don't remove it as dead config.
-
-`fish/config.fish` is a one-time snapshot of the expanded oh-my-zsh git/directory aliases, ported so fish behaves like the zsh setup. It is not generated and does not track `.zshrc`; the two drift and that's expected.
 
 ## Commit conventions
 
