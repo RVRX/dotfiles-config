@@ -20,9 +20,9 @@ There is no installer. An `install.sh` existed until it was orphaned by the vim-
 | `lazygit/config.yml` | `~/.config/lazygit/config.yml` (macOS: `~/Library/Application Support/lazygit/config.yml`) |
 | `iTerm2/com.googlecode.iterm2.plist` | imported through iTerm2 preferences, not copied |
 
-## Important: files are copies, not symlinks
+## Important: most files are copies, not symlinks
 
-Nothing here is symlinked into place. The live config and the repo copy drift independently, and the repo copy is deliberately the *portable* version:
+Only the two nvim files marked in the table above are symlinked (see below). Everything else is **copied** into place, which means the live config and the repo copy drift independently — and the repo copy is deliberately the *portable* version:
 
 - Machine-specific values are stripped or replaced with `~`-relative paths.
 - Local-only lines (work aliases, `pyenv`/`pipx` PATH entries, per-machine `export`s) live only in the live file, not here.
