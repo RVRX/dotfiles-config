@@ -131,3 +131,6 @@ lman() { man -M ~/Documents/linux-man "$@" }
 
 # Uncomment the following line to enable 1Password completions
 # eval "$(op completion zsh)"; compdef _op op
+
+# Keep history per-session (oh-my-zsh enables share_history by default)
+unsetopt SHARE_HISTORY
