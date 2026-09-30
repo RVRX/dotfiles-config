@@ -19,6 +19,7 @@ There is no installer. An `install.sh` existed until it was orphaned by the vim-
 | `tmux/.tmux.conf` | `~/.tmux.conf` |
 | `lazygit/config.yml` | `~/.config/lazygit/config.yml` (macOS: `~/Library/Application Support/lazygit/config.yml`) |
 | `iTerm2/com.googlecode.iterm2.plist` | imported through iTerm2 preferences, not copied |
+| `claude/statusline-command.sh` | `~/.claude/statusline-command.sh` (needs `jq`; enabled via `statusLine` in `~/.claude/settings.json`, which is deliberately not tracked) |
 
 ## Important: most files are copies, not symlinks
 
