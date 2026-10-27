@@ -137,3 +137,43 @@ unsetopt SHARE_HISTORY
 
 # fzf keybindings: Ctrl-R history, Ctrl-T files, Alt-C cd (needs fzf 0.48+)
 (( $+commands[fzf] )) && source <(fzf --zsh)
+
+# Select and sign in to an AWS SSO profile by nickname: `awsuse <nickname>`.
+# Not configured by default. To set it up, fill in _awsuse_profiles below in
+# your local ~/.zshrc only (never commit real profile names or account IDs):
+#
+#   _awsuse_profiles=(
+#     example1 ExampleRole1-<account-id>
+#     example2 ExampleRole2-<account-id>
+#   )
+#
+# Each value must be a profile name from ~/.aws/config (`aws configure sso`
+# creates them). Nicknames tab-complete once configured.
+typeset -gA _awsuse_profiles
+_awsuse_profiles=()
+
+awsuse() {
+  if (( ! ${#_awsuse_profiles} )); then
+    print -u2 "awsuse: not configured. Add profiles to _awsuse_profiles in ~/.zshrc (see the comments there)."
+    return 1
+  fi
+
+  local profile
+  [[ -n "$1" ]] && profile="${_awsuse_profiles[$1]}"
+  if [[ -z "$profile" ]]; then
+    print -u2 "Usage: awsuse ${(j:|:)${(@ok)_awsuse_profiles}}"
+    return 2
+  fi
+
+  if aws sso login --profile "$profile"; then
+    export AWS_PROFILE="$profile"
+    print "Using AWS profile: $profile"
+  fi
+}
+
+_awsuse_completions() {
+  local -a profiles
+  profiles=(${(k)_awsuse_profiles})
+  _describe 'AWS profile nickname' profiles
+}
+compdef _awsuse_completions awsuse
