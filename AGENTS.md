@@ -1,5 +1,9 @@
 # AGENTS.md
 
+## Never push
+
+Agents must never push to any remote, even if asked to in passing or if a push would succeed. Agents may commit locally; the user reviews and pushes every change manually.
+
 ## This is a public repository
 
 Everything committed here is publicly visible on GitHub. Nothing company-specific or machine-specific may be committed or pushed. That includes, but is not limited to:
