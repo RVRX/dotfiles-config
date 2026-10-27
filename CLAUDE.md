@@ -2,6 +2,8 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+@AGENTS.md — this is a public repo; read it before committing anything.
+
 ## What this repo is
 
 A personal dotfiles repository: a flat set of per-tool directories, each holding one config file plus a `README.md` with that tool's install steps and prerequisites. There is no build, test, or lint step — "running" a change means copying the file to its destination and restarting the tool.
