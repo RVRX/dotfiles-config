@@ -18,3 +18,9 @@ git clone https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-
 ```
 
 # Copy .zshrc to ~/.zshrc
+
+# Install fzf (optional)
+Powers fuzzy Ctrl-R history search, Ctrl-T file picking, and Alt-C directory jumping. `.zshrc` skips it if not installed.
+```bash
+brew install fzf
+```

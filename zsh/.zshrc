@@ -134,3 +134,6 @@ lman() { man -M ~/Documents/linux-man "$@" }
 
 # Keep history per-session (oh-my-zsh enables share_history by default)
 unsetopt SHARE_HISTORY
+
+# fzf keybindings: Ctrl-R history, Ctrl-T files, Alt-C cd (needs fzf 0.48+)
+(( $+commands[fzf] )) && source <(fzf --zsh)
